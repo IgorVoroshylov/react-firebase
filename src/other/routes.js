@@ -1,5 +1,6 @@
-import Chat from "../component/Chat/chat"
+import Main from "../component/Main/main"
 import Login from "../component/Login/login"
+import Navbar from "../component/Navbar/navbar"
 
 
 export const publicRoutes = [
@@ -11,7 +12,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
    {
-      path: "/chat",
-      Component: Chat
+      path: "/main",
+      Component: Main
    }
 ]

@@ -1,5 +1,5 @@
 .nav {
-   background-color: rgb(48, 162, 228);
+   background: #603bbb;
    height: 60px;
    line-height: 60px;
    display: flex;
@@ -7,8 +7,13 @@
    padding: 0px 40px 0px 40px;
 }
 
+.title {
+   color: #fff;
+}
+
 .navName_button {
    display: flex;
+   align-items: center;
    align-items: center;
 }
 

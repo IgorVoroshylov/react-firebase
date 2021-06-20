@@ -8,15 +8,19 @@ const Navbar = () => {
    const {auth} = useContext(Context);
    const [user] = useAuthState(auth);
 
+   const logOut = () => {
+      auth.signOut();
+   }
+
    return (
       <div className={styles.nav}>
-         <div className={styles.title}>navbar</div>
-         <div className={styles.buttons}>
+         <div className={styles.title}>network</div>
+         <div >
             {
                user ?
                <div className={styles.navName_button}>
-                  <div>{user.displayName}</div>
-                  <button onClick={() => auth.signOut()}>Out</button>
+                  <div>{user ? user.email : null}</div>
+                  <button onClick={logOut}>Log Out</button>
                </div>
                :
                null
@@ -31,30 +35,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-
-
-
-// import { NavLink } from 'react-router-dom';
-// import styles from './navbar.module.css'
-
-// const Navbar = ({ handleLogout, user }) => {
-//    return (
-//       <div className={styles.nav}>
-//          <div className={styles.title}>navbar</div>
-//          <div className={styles.buttons}>
-//             {
-//                user ?
-//                <button onClick={handleLogout} >Out</button>
-//                :
-//                <NavLink to={'/login'}>
-//                   <button>Login</button>
-//                </NavLink>
-//             }
-            
-//          </div>
-//       </div>
-//    )
-// }
-
-// export default Navbar;
