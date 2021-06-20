@@ -1,0 +1,18 @@
+.nav {
+   background-color: rgb(48, 162, 228);
+   height: 60px;
+   line-height: 60px;
+   display: flex;
+   justify-content: space-between;
+   padding: 0px 40px 0px 40px;
+}
+
+.navName_button {
+   display: flex;
+   align-items: center;
+}
+
+.navName_button button {
+   height: 30px;
+   margin-left: 30px;
+}

@@ -1,0 +1,11 @@
+.block {
+   padding: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.enter {
+   margin-top: 50px;
+   display: block;
+}
