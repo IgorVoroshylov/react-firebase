@@ -18,8 +18,8 @@ const Navbar = () => {
          <div >
             {
                user ?
-               <div className={styles.navName_button}>
-                  <div>{user ? user.email : null}</div>
+               <div className={styles.navLine}>
+                  <div className={styles.userName}>{user ? user.email : null}</div>
                   <button onClick={logOut}>Log Out</button>
                </div>
                :

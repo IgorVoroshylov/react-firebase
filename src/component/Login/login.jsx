@@ -16,7 +16,7 @@ const Login = () => {
    const [city, setCity] = useState('');
 
 
-   const register = () => {
+   const checkIn = () => {
       auth
          .createUserWithEmailAndPassword(email, password)
          .then(() => {
@@ -109,7 +109,7 @@ const Login = () => {
                   <input type="text" name='city' value={city} onChange={e => setCity(e.target.value)}/>
                   <p></p>
 
-                  <button onClick={register}>Sign up</button>
+                  <button onClick={checkIn}>Sign up</button>
                   <p className={styles.chengeVariant}>Have an account? <span onClick={() => setHasAccaunt(!hasAccount)}>Sign in</span></p>
                </div>
             }
@@ -119,23 +119,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-
-
-
-
-
-// (
-//    <div>
-//       <div>
-//          <h1>Login</h1>
-//          <h3>Login/Register</h3>
-//          <input type="email" value={email} onChange={ e => setEmail(e.target.value)} placeholder='email' />
-//          <input type="password" value={password} onChange={ e => setPassword(e.target.value)} placeholder='password' />
-//          <div className={styles.errorField}>{error}</div>
-//          <button onClick={register}>Register</button>
-//          <button onClick={login}>Login</button>
-//       </div>
-//    </div>
-// )

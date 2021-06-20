@@ -5,6 +5,8 @@
 .chat_box {
    text-align: center;
    padding: 30px;
+   background: rgb(41, 39, 39);
+   height: 100vh;
 }
 
 .chat {
@@ -30,10 +32,11 @@
 /* --------------------- */
 
 .message_block {
-   border: 3px solid rgb(101, 219, 255);
+   background: #603bbb;
    margin-bottom: 4px;
    border-radius: 10px;
-   padding: 3px;
+   color: #fff;
+   padding: 10px;
 }
 
 .nameBlock {

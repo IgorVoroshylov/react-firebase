@@ -1,11 +1,12 @@
 import './App.css';
-import AppRouter from './component/app_router';
+
 import Navbar from './component/Navbar/navbar';
 import { BrowserRouter } from 'react-router-dom';
 import Preloader from './component/Preloader/preloader';
 import { useContext } from 'react';
 import { Context } from '.';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import AppRouter from './component/AppRouter/app_router';
 
 function App() {
   const {auth} = useContext(Context);
