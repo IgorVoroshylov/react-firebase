@@ -1,24 +1,32 @@
 import './App.css';
 
-import Navbar from './component/Navbar/navbar';
+import Header from './component/Header/header';
 import { BrowserRouter } from 'react-router-dom';
 import Preloader from './component/Preloader/preloader';
 import { useContext } from 'react';
 import { Context } from '.';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import AppRouter from './component/AppRouter/app_router';
+import Main from './component/Main/main';
+import Login from './component/Login/login';
+//import AppRouter from './component/AppRouter/app_router';
 
 function App() {
   const {auth} = useContext(Context);
   const [user, loading, error] = useAuthState(auth);
-  //! useAuthState передает: user - пользователь, loading - переменная отвечает загружен юзер или нет, error - обьект с ошибкой
+  //! useAuthState передает: user - пользователь, loading - переменная отвечает загружен user или нет, error - обьект с ошибкой
   if(loading) {
     return <Preloader/>
   }
   return (
       <BrowserRouter>
-        <Navbar />
-        <AppRouter />
+        <Header />
+        {
+          user ?
+          <Main/>
+          :
+          <Login/>
+        }
+        
       </BrowserRouter>
 
   );

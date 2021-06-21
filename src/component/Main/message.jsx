@@ -4,16 +4,17 @@ const Message = ({deleteMessage, message}) => {
    return (
             <div className={styles.message_block}>
                <div className={styles.nameBlock}>
-                  <div className={styles.avatar}>
-                     <img src={message.photoURL} className={styles.photo} alt="no foto" />
+                  <div className={styles.title}>
+                     <img src={message.photoURL} className={styles.photo} alt="no_foto" />
+                     <p>{message.displayName}</p>
                   </div>
-                  <div>{message.displayName}</div>
+                  <div className={styles.city}>
+                     <p>{message.city}</p>
+                  </div>
                </div>
-               <div>
-                  <p className={styles.message}>{message.text}</p>
-               </div>
-               <div>
-                  <button onClick={ () => { deleteMessage(message.id)}} >Delete</button>
+               <p className={styles.message}>{message.text}</p>
+               <div className={styles.message_btn}>
+                  <button className={styles.btn + ' ' + styles.send_mesmessage_btn} onClick={ () => { deleteMessage(message.id)}} >Delete</button>
                </div>
             </div>)
 }

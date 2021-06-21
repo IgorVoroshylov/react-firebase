@@ -1,10 +1,9 @@
-import { NavLink } from 'react-router-dom';
-import styles from './navbar.module.css';
+import styles from './header.module.css';
 import { useContext } from 'react';
 import { Context } from '../..';
 import {useAuthState} from 'react-firebase-hooks/auth';
 
-const Navbar = () => {
+const Header = () => {
    const {auth} = useContext(Context);
    const [user] = useAuthState(auth);
 
@@ -34,4 +33,4 @@ const Navbar = () => {
    )
 }
 
-export default Navbar;
+export default Header;

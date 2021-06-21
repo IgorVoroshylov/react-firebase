@@ -96,15 +96,22 @@ const Login = () => {
                <div className={styles.btnContainer}>
                   <div className={styles.title}>Sign in</div>
                   <label>Username</label>
-                  <input type="text" autoFocus required value={email} onChange={e => setEmail(e.target.value)} />
+                  <input type="text"
+                         autoFocus
+                         required
+                         value={email}
+                         onChange={e => setEmail(e.target.value)}/>
                   <p className={styles.errorMsg}>{emailError}</p>
 
                   <label>Pssword</label>
-                  <input type="password" required value={password} onChange={e => setPassword(e.target.value)} />
+                  <input type="password"
+                         required
+                         value={password}
+                         onChange={e => setPassword(e.target.value)}/>
                   <p className={styles.errorMsg}>{passwordError}</p>
 
                   <button onClick={login} >Sign in</button>
-                  <p className={styles.chengeVariant}>Don't have an account? <span onClick={() => setHasAccaunt(!hasAccount)}>Sign up</span></p>
+                  <p className={styles.chengeVariant}>Don't have an account?<span onClick={() => setHasAccaunt(!hasAccount)}>Sign up</span></p>
                </div>
                 :
                <div className={styles.btnContainer}>

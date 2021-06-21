@@ -17,12 +17,12 @@ const fire = firebase.initializeApp({
 });
 
 const auth = fire.auth();
-export const Context = createContext(null)
+export const Context = createContext(null);
 
 ReactDOM.render(
   <Context.Provider value={{
     fire,
-    auth
+    auth,
   }}>
     <App />
   </Context.Provider>,

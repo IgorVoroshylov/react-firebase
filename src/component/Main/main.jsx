@@ -21,7 +21,6 @@ const Main = () => {
 
    const [users] = useCollectionData(refUsers.where('email', '==', user.email));
 
-
    const chengeInputValue = (e) => {
       setTextareaValue(e.target.value);
    }
@@ -55,6 +54,7 @@ const Main = () => {
                   uid: user.uid,
                   displayName: users[0].surName,
                   photoURL: user.photoURL,
+                  city: users[0].city,
                   text: textareaValue,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp()
                })
@@ -83,12 +83,16 @@ const Main = () => {
             users ?
                <div className={styles.chat_box}>
                   <div className={styles.chat_inner}>
-                     <div>
-                        <textarea className={styles.chat_input} type="text" name='text' value={textareaValue} onChange={chengeInputValue} />
+                     <div className={styles.create_post}>
+                        <textarea className={styles.chat_input}
+                                  type="text" name='text'
+                                  placeholder="What&#8217;s new?"
+                                  value={textareaValue}
+                                  onChange={chengeInputValue} />
                      </div>
-                     <button onClick={ sendMessage } >Send</button>
+                     <button className={styles.btn} onClick={ sendMessage }>Send</button>
                   </div>
-                  <div className={styles.chat}>
+                  <div className={styles.posts}>
                      {messages.map( message => <Message key={message.id} deleteMessage={deleteMessage} message={message} /> )}
                   </div>
                </div>

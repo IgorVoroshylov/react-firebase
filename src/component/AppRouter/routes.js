@@ -1,6 +1,5 @@
-import Main from "../component/Main/main"
-import Login from "../component/Login/login"
-import Navbar from "../component/Navbar/navbar"
+import Main from "../Main/main"
+import Login from "../Login/login"
 
 
 export const publicRoutes = [
