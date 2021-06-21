@@ -14,17 +14,14 @@ const Login = () => {
    const [hasAccount, setHasAccaunt] = useState(true);
    const [phone, setPhone] = useState('');
    const [name, setName] = useState('');
-   const [surName, setSerName] = useState('');
+   const [surName, setSurName] = useState('');
    const [gender, setGender] = useState('');
    const [city, setCity] = useState('');
 
 
-   const checkIn = () => {
+   const checkIn = (newUser) => {
       auth
          .createUserWithEmailAndPassword(email, password)
-         .then(() => {
-            resetInput();
-         })
          .catch(err => {
             switch(err.code) {
               case 'auth/email-already-in-use':
@@ -35,20 +32,29 @@ const Login = () => {
                 setPasswordError(err.message);
                 break;
             }
-          })
+            return err;
+         })
+         .then((user) => {
+            if(user.operationType) {
+               newUser();
+            }
+         })
+         .then(() => {
+            resetInput();
+         })
    }
 
    const createUsers = () => {
       ref
          .doc(email)
          .set({
-                  name,
-                  surName,
-                  email,
-                  phone,
-                  gender,
-                  city,
-                  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+               name,
+               surName,
+               email,
+               phone,
+               gender,
+               city,
+               createdAt: firebase.firestore.FieldValue.serverTimestamp()
                })
          .then(() => {
             resetInput()
@@ -82,7 +88,7 @@ const Login = () => {
       setEmail('');
       setPassword('');
       setName('');
-      setSerName('');
+      setSurName('');
       setPhone('');
       setGender('');
       setCity('');
@@ -97,23 +103,23 @@ const Login = () => {
                   <div className={styles.title}>Sign in</div>
                   <label>Username</label>
                   <input type="text"
-                         autoFocus
-                         required
-                         value={email}
-                         onChange={e => setEmail(e.target.value)}/>
+                        autoFocus
+                        required
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}/>
                   <p className={styles.errorMsg}>{emailError}</p>
 
                   <label>Pssword</label>
                   <input type="password"
-                         required
-                         value={password}
-                         onChange={e => setPassword(e.target.value)}/>
+                        required
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}/>
                   <p className={styles.errorMsg}>{passwordError}</p>
 
-                  <button onClick={login} >Sign in</button>
+                  <button onClick={login}>Sign in</button>
                   <p className={styles.chengeVariant}>Don't have an account?<span onClick={() => setHasAccaunt(!hasAccount)}>Sign up</span></p>
                </div>
-                :
+               :
                <div className={styles.btnContainer}>
                   <div className={styles.title}>Sign up</div>
                   <label>Phone</label>
@@ -133,7 +139,7 @@ const Login = () => {
                   <p></p>
 
                   <label>Surname</label>
-                  <input type="text" name='surname' autoComplete="off" value={surName} onChange={e => setSerName(e.target.value)}/>
+                  <input type="text" name='surname' autoComplete="off" value={surName} onChange={e => setSurName(e.target.value)}/>
                   <p></p>
 
                   <label>Gender</label>
@@ -145,8 +151,7 @@ const Login = () => {
                   <p></p>
 
                   <button onClick={ () => {
-                     checkIn();
-                     createUsers();
+                     checkIn(createUsers);
                   }}>Sign up</button>
                   <p className={styles.chengeVariant}>Have an account? <span onClick={() => setHasAccaunt(!hasAccount)}>Sign in</span></p>
                </div>
