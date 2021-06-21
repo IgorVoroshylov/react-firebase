@@ -1,9 +1,12 @@
 import { useContext, useState } from 'react';
 import { Context } from '../..';
 import styles from './login.module.css';
+import firebase from 'firebase'
 
 const Login = () => {
-   const {auth} = useContext(Context);
+   const {auth, fire} = useContext(Context);
+   const ref = fire.firestore().collection('users');
+
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [emailError, setEmailError] = useState('');
@@ -35,6 +38,26 @@ const Login = () => {
           })
    }
 
+   const createUsers = () => {
+      ref
+         .doc(email)
+         .set({
+                  name,
+                  surName,
+                  email,
+                  phone,
+                  gender,
+                  city,
+                  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+               })
+         .then(() => {
+            resetInput()
+         })
+         .catch((err) => {
+            console.log(err);
+         });
+   }
+
    const login = () => {
       auth
          .signInWithEmailAndPassword(email, password)
@@ -58,6 +81,11 @@ const Login = () => {
    const resetInput = () => {
       setEmail('');
       setPassword('');
+      setName('');
+      setSerName('');
+      setPhone('');
+      setGender('');
+      setCity('');
    }
 
    return(
@@ -94,22 +122,25 @@ const Login = () => {
                   <p className={styles.errorMsg}>{passwordError}</p>
 
                   <label>Name</label>
-                  <input type="text" name='name' autocomplete="off" value={name} onChange={e => setName(e.target.value)}/>
+                  <input type="text" name='name' autoComplete="off" value={name} onChange={e => setName(e.target.value)}/>
                   <p></p>
 
                   <label>Surname</label>
-                  <input type="text" name='surname' value={surName} onChange={e => setSerName(e.target.value)}/>
+                  <input type="text" name='surname' autoComplete="off" value={surName} onChange={e => setSerName(e.target.value)}/>
                   <p></p>
 
                   <label>Gender</label>
-                  <input type="text" name='gender' value={gender} onChange={e => setGender(e.target.value)}/>
+                  <input type="text" name='gender' autoComplete="off" value={gender} onChange={e => setGender(e.target.value)}/>
                   <p></p>
 
                   <label>City</label>
-                  <input type="text" name='city' value={city} onChange={e => setCity(e.target.value)}/>
+                  <input type="text" name='city' autoComplete="off" value={city} onChange={e => setCity(e.target.value)}/>
                   <p></p>
 
-                  <button onClick={checkIn}>Sign up</button>
+                  <button onClick={ () => {
+                     checkIn();
+                     createUsers();
+                  }}>Sign up</button>
                   <p className={styles.chengeVariant}>Have an account? <span onClick={() => setHasAccaunt(!hasAccount)}>Sign in</span></p>
                </div>
             }

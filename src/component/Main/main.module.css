@@ -6,7 +6,7 @@
    text-align: center;
    padding: 30px;
    background: rgb(41, 39, 39);
-   height: 100vh;
+   height: 100%;
 }
 
 .chat {
@@ -41,6 +41,10 @@
 
 .nameBlock {
    display: flex;
+}
+
+.name {
+   color: rgb(34, 176, 241);
 }
 
 .avatar {
